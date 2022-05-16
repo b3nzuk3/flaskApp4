@@ -1,5 +1,5 @@
 from blog import app
-from flask import render_template, url_for, request
+from flask import render_template, url_for, redirect, flash, request
 from blog.forms import RegistrationForm
 
 
@@ -14,7 +14,7 @@ def home():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        flash('Thanks for Registration')
+        flash('Thanks for Registration', 'success')
         return redirect(url_for('home'))
 
     return render_template('register.html', form=form)
