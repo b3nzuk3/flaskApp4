@@ -6,3 +6,7 @@ class RegistrationForm(Form):
     email = StringField('Email', [validators.length(min=4, max=35 )])
     password = PasswordField('New Password', [validators.DataRequired(), validators.EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
+
+class LoginForm(Form):
+    email = StringField('Email', [validators.length(min=4, max=35 )])
+    password = PasswordField('New Password', [validators.DataRequired()])
