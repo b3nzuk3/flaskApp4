@@ -1,4 +1,4 @@
-from blog import app
+from blog import app, db
 from flask import render_template, url_for, redirect, flash, request
 from blog.forms import RegistrationForm, LoginForm
 from blog.models import User, Post
@@ -14,11 +14,11 @@ def home():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User(username=form.username, email=form.email, password=form.password)
+        user = User(username=form.username.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Thanks for Registration', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
 
@@ -27,10 +27,9 @@ def login():
     form = LoginForm(request.form)
     error = None
     if request.method == 'POST' and form.validate():
-        if request.form['email'] != 'admin@blog.com' or request.form['password'] != 'secret':
-            error = 'Invalid Credentials'
-        else:
-            flash('You have logged in successfully', 'success')
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
             return redirect(url_for('home'))
-
+        else:
+            flash('Login unsuccessful please try again', 'danger')
     return render_template('login.html', form=form, error=error)
