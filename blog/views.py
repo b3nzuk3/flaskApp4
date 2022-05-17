@@ -1,7 +1,7 @@
 from blog import app
 from flask import render_template, url_for, redirect, flash, request
 from blog.forms import RegistrationForm, LoginForm
-
+from blog.models import User, Post
 
 @app.route('/')
 @app.route('/home')
@@ -14,6 +14,9 @@ def home():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
+        user = User(username=form.username, email=form.email, password=form.password)
+        db.session.add(user)
+        db.session.commit()
         flash('Thanks for Registration', 'success')
         return redirect(url_for('home'))
 
