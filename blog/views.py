@@ -1,6 +1,6 @@
 from blog import app, db
 from flask import render_template, url_for, redirect, flash, request
-from blog.forms import RegistrationForm, LoginForm
+from blog.forms import RegistrationForm, LoginForm, BlogForm
 from blog.models import User, Post
 
 @app.route('/')
@@ -33,3 +33,14 @@ def login():
         else:
             flash('Login unsuccessful please try again', 'danger')
     return render_template('login.html', form=form, error=error)
+
+@app.route('/newblog', methods=['GET', 'POST'])
+def newblog():
+    form = BlogForm(request.form)
+    if request.method == 'POST' and form.validate():
+        post = Post(title=form.title.data, content=form.content.data, user_id='user.id')
+        db.session.add(post)
+        db.session.commit()
+        flash('Blog created', 'success')
+        return redirect(url_for('home'))
+    return render_template('newblog.html', form=form,)

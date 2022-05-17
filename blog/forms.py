@@ -1,4 +1,4 @@
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
+from wtforms import Form, BooleanField, StringField, PasswordField,TextAreaField, validators
 
 
 class RegistrationForm(Form):
@@ -10,3 +10,7 @@ class RegistrationForm(Form):
 class LoginForm(Form):
     email = StringField('Email', [validators.length(min=4, max=35 )])
     password = PasswordField('New Password', [validators.DataRequired()])
+
+class BlogForm(Form):
+    title = StringField('Title', [validators.length(min=4, max=50)])
+    content = TextAreaField('Content', [validators.DataRequired()])
