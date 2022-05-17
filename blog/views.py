@@ -22,11 +22,12 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
+    error = None
     if request.method == 'POST' and form.validate():
-        if request.form['email'] != 'admin@blog.com' or request.form['password'] != 'secret'
+        if request.form['email'] != 'admin@blog.com' or request.form['password'] != 'secret':
             error = 'Invalid Credentials'
         else:
-            flash('Thanks for Registration', 'success')
+            flash('You have logged in successfully', 'success')
             return redirect(url_for('home'))
 
-    return render_template('register.html', form=form)
+    return render_template('login.html', form=form, error=error)
