@@ -1,4 +1,4 @@
-from blog import app, db
+from blog import app, db, bcrypt
 from flask import render_template, url_for, redirect, flash, request
 from blog.forms import RegistrationForm, LoginForm, BlogForm
 from blog.models import User, Post
@@ -14,7 +14,8 @@ def home():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        hashed_pw = bcrypt.generate_password_hash(form.password.data)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_pw)
         db.session.add(user)
         db.session.commit()
         flash('Thanks for Registration', 'success')
