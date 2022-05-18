@@ -1,5 +1,14 @@
+*{
+  box-sizing: border-box;
+}
+
+.bg-custom{
+ background: #efefef;
+  //background:#777;
+}
+
 .place_first{
-  margin: 5rem auto;
+  margin: 10rem auto;
 }
 
 .searchbar{
@@ -44,4 +53,27 @@
    border-radius: 50%;
    color:white;
    text-decoration:none;
+   }
+
+
+
+/* Home page and Blog Styling */
+
+   #about-me{
+     font-family: 'Handlee', cursive;
+     border-radius:15px;
+   }
+   #about-me .content{
+     font-size:25px;
+   }
+   #about-me .end{
+     font-size:25px;
+   }
+   #about-me h2{
+     display:inline-block;
+     text-align:center;
+     border:5px ridge #20bcd5;
+     padding:20px 15px;
+     color:#20bcd5;
+     margin:auto 10px;
    }

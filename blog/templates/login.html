@@ -1,9 +1,49 @@
 {% extends "layout.html" %}
 {% from "macro.html" import render_field %}
 {% block content %}
-{% if error %}
-  <p class=error><strong>Error:</strong> {{ error }}
-{% endif %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+          <!-- form card login -->
+          <div class="card rounded shadow shadow-sm">
+            <div class="card-header">
+              <h3 class="mb-0">Login</h3>
+            </div>
+            <div class="card-body">
+              <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+                <div class="form-group">
+                  <label for="uname1">Username</label>
+                  {{ form.email(class="form-control form-control-lg is-invalid ") }}
+                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  {{ form.password(class="form-control form-control-lg is-invalid ") }}
+                  <div class="invalid-feedback">Enter your password too!</div>
+                </div>
+                <div>
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description small text-dark">Remember me on this computer</span>
+                  </label>
+                </div>
+                <button value=Register type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- {% if error %}
+<p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
 <form method=post>
   <h1>Login</h1>
   <dl>
@@ -11,6 +51,6 @@
     {{ render_field(form.password) }}
   </dl>
   <p><input type=submit value=Register>
-</form>
+</form> -->
 
 {% endblock content %}

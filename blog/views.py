@@ -63,3 +63,7 @@ def newblog():
 def account():
 
     return render_template('account.html')
+@app.route("/about")
+def about():
+
+    return render_template('about.html')
