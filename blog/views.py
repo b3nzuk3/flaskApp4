@@ -14,7 +14,7 @@ def home():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        hashed_pw = bcrypt.generate_password_hash(form.password.data)
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_pw)
         db.session.add(user)
         db.session.commit()
@@ -29,7 +29,7 @@ def login():
     error = None
     if request.method == 'POST' and form.validate():
         user = User.query.filter_by(email=form.email.data).first()
-        if user:
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             return redirect(url_for('home'))
         else:
             flash('Login unsuccessful please try again', 'danger')
