@@ -1,14 +1,63 @@
 {% extends "layout.html" %}
 {% from "macro.html" import render_field %}
 {% block content %}
-<form method=post>
-  <dl>
-    {{ render_field(form.username) }}
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-    {{ render_field(form.confirm) }}
-  </dl>
-  <p><input type=submit value=Register>
-</form>
+<section class="form-body">
+  <div class="login">
+    <h1>Register</h1>
+    <form method="post">
+      <div class="">
+        {% if form.username.errors %}
+        {{ form.username(class="input-button is-invalid", placeholder="Username") }}
+        <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.username(class="input-button", placeholder="Username") }}
+        {% endif %}
+      </div>
+      <div class="">
+        {% if form.email.errors %}
+        {{ form.email(class="input-button is-invalid", placeholder="Email") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.email(class="input-button", placeholder="Email") }}
+        {% endif %}
+      </div>
+      <div class="">
+        {% if form.password.errors %}
+        {{ form.password(class="input-button is-invalid", placeholder="Password") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.password(class="input-button", placeholder="Password") }}
+        {% endif %}
+      </div>
+      <div class="">
+        {% if form.confirm.errors %}
+        {{ form.confirm(class="input-button is-invalid", placeholder="Confirm Password") }}
+        <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.confirm(class="input-button", placeholder="Confirm Password") }}
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block btn-large">Register</button>
+    </form>
+  </div>
+</section>
+
 
 {% endblock content %}

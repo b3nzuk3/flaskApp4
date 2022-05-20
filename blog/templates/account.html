@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="form-body">
+  <div style="margin-top:30px;" class="content-section text-center">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{ image_file }}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ current_user.username }}</h2>
+        <p class="text-secondary">{{ current_user.email }}</p>
+      </div>
+    </div>
+
+
+    <div class="login mt-2">
+      <h1>Account Info</h1>
+      <form method="post" enctype="multipart/form-data">
+        {{ form.username(class="input-button is-invalid", placeholder="Username") }}
+        <div class="invalid-feedback">
+          {% for error in form.username.errors %}
+          <span> {{ error }}</span>
+          {% endfor %}
+        </div>
+        {{ form.email(class="input-button is-invalid", placeholder="Email") }}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+          <span> {{ error }}</span>
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-success btn-block btn-large">Update</button>
+      </form>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
 {% from "macro.html" import render_field %}
 {% block content %}
-<form method=post>
-  <h1>Login</h1>
-  <dl>
-    {{ render_field(form.title) }}
-    {{ render_field(form.content) }}
-  </dl>
-  <p><input type=submit value=Register>
-</form>
+<section class="form-body">
+  <div class="login">
+    <h1>Create blog</h1>
+    <form method="post">
+      {{ form.title(class="input-button is-invalid", placeholder="Title") }}
+      {{ form.content(class="input-button is-invalid", placeholder="Content") }}
+      <button type="submit" class="btn btn-success btn-block btn-large">Create</button>
+    </form>
+  </div>
+</section>
 
 {% endblock content %}

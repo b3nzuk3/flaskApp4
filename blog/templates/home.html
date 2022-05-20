@@ -1,5 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<h1>Hello World</h1>
+{% for post in posts %}
+<section id="about-me" class="container bg-white text-center mt-5 pt-4 pb-2">
+  <a href="{{ url_for('blog', post_id=post.id) }}"><h2 class="font-weight-bold display-5 mx-auto">{{ post.title }}</h2></a>
+  <div class="content text-left p-4">
+    {{ post.content }}
+  </div>
+  <div class="text-start start" style="padding-left:30px;">
+    <img style="margin-top: 14px;" class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+  </div>
+  <div class="text-end end" style="padding-right:30px;">
+ <p> <span style=" color:#e74c3c; " >by </span> {{ post.author.username }}</p>
+  </div>
+</section>
+{% endfor %}
 {% endblock content %}
