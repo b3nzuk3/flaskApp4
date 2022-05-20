@@ -1,7 +1,7 @@
 # Blogs
 
 This project was generated with [Python3.10](https://www.python.org/downloads/release/python-3100/)
-#### This site is a Blogs site application, May-05-2022
+#### This site is a Blogs site application, May-19-2022
 ## Author
 #### By b3nzuk3
 
